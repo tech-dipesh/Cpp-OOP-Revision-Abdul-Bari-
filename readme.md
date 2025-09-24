@@ -5,3 +5,8 @@ Order Of the Code:
 4. OOps
 5. Operator Overloading
 6. Inheritance
+7. Base and Derived Pointer
+8. PolyMorphism
+9. Friend&Static Member
+10. Exception Handling
+11. Template Function Classs
