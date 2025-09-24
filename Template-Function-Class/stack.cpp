@@ -5,7 +5,7 @@ using namespace std;
    class Stack{
     //  T s[15];
     int top;
-    int size;
+    T size;
      T *stacks;
 
    public:
