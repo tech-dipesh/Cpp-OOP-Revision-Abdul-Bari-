@@ -28,7 +28,7 @@ int main(){
    // for the each time we can't store the entire value of the object where we canuse the operator overfloadin with friend function and reference.
    Serial sl;
    sl.name="Dipesh", sl.address="Lumbini", sl.rollid=6064, sl.branch="Computer Science";
-  ifstream fileread("serial.txt");
+  ifstream fileread("serial-read.txt");
 
    //  i can't directly insert the values.
    fileread>>sl;
