@@ -1,10 +1,3 @@
-
-// min_element(begin, end) → smallest.
-
-// max_element(begin, end) → largest.
-
-// minmax_element(begin, end) → both at once.
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
