@@ -1,0 +1,15 @@
+Portato
+12
+85
+Tomato
+4
+65
+Onion
+6
+50
+Cabbage
+8
+12
+CowlyFlower
+4
+125
