@@ -2,18 +2,20 @@
 using namespace std;
    class Great{
       public:
-      void first final(){
-        return 232+293;
+      virtual void first() final{
+        // return 232+293;
+        cout<<"This is the first data."<<endl;
       }
       double second(){
         return 23982.238f+131398.9823f;
       }
     };
     class Grand: public Great{
-      // now i can't override the first as it take the final:
+      // now i can't override the first if i take final the base drived:
       public:
       // void first(){
-      //   return 1+3;
+      //   // return 1+3;
+      //   cout<<"Derived class first.";
       // }
       
       double second(){
