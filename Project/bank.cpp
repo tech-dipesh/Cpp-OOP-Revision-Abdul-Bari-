@@ -31,11 +31,14 @@ class Bank{
   //   return totalbalance;
   // }
   
-  void setPhoneNumber(){
-    return phonenumber;
+  void setPhoneNumber(int phonenumber){
+    this->phonenumber=phonenumber;
   }
-  void setEmail(){
-    return email;
+  void setEmail(string email){
+    this->email=email;
+  }
+  void setAccountNo(int accountno){
+    this->accountno=accountno;
   }
   string getName(){
     return name;
@@ -80,13 +83,14 @@ int Bank::OpenAccount(){
     cin>>emailval;
   email=emailval;
   }
-int Bank::BalanceEnquiry(){
-    
-  }
-int Bank::Deposit(){
- cout<<"Please enter the Bank account name: "<<endl;
 
+int Bank::BalanceEnquiry(){
+      return totalbalance;
   }
+
+int Bank::Deposit(int depositbalance){
+  
+}
 int Bank::Withdrawl(){
  cout<<"Please enter the Bank account name: "<<endl;
 
@@ -135,6 +139,26 @@ int main(){
     break;
     case 2:
     b.BalanceEnquiry();
+    break;
+    
+    
+    case 3:
+    b.Deposit();
+     cout<<"Please enter the Bank account name: "<<endl;
+     int bankaccountnumber;
+    try{
+      if(bankaccountnumber==b.getAccount()){
+          b.setAccountNo(bankaccountnumber);
+      }
+      else{
+        throw "Account Number doesn't match.";
+      }
+    }
+    catch(string err){
+        cout<<err<<endl;
+    }
+    break;
+
   default:
   cout<<"Please choose any option: ";
     break;

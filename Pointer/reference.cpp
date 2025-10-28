@@ -7,7 +7,9 @@ int main(){
   x++;
   int b=20;
   // it's wrong variable as we can't declare the twice variable:
-  &y=b;
+  // &y=b;
+
+  
   // next value of the pointer of int of 2 mean 13 to 15.
   cout<<y<<endl;
   // printing the value of y and x as it is just the nickname of the value:

@@ -23,7 +23,7 @@ using namespace std;
 
 // Only on sorted:
 int main(){
-   vector<int>li={1, 2, 5, 9, 10, 14, 18, 21, 25, 29, 30, 30, 35, 50,};
+   vector<int>li={1, 2, 5, 9, 10, 14, 18, 21, 25, 29, 30, 30, 35, 50};
    int value=14;
    cout<<binarySearch(li, value)<<endl;
    // need to dereference it.
