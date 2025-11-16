@@ -1,19 +1,21 @@
 // this are the things that i must implemenet on my banking system with the io stream with managing the file:
-// select one option beloew:1. open an account, 2: Balance Enquiry, 3: Deposit, 4: Withdrawl, 5: Close an account, 6: Show all Account, 7: Quit
+// select one option below:1. open an account, 2: Balance Enquiry, 3: Deposit, 4: Withdrawl, 5: Close an account, 6: Show all Account, 7: Quit
 
 
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
-    
+// Global variable to count the total Bank Account:
+int totalBankAccount=0;
+
 class Bank{
   private:
   static string name;
   static int totalbalance;
   int accountno;
-  string email;
-  int phonenumber;
+  static string email;
+  static int phonenumber;
   public:
   // Bank(string name, int totalbalance, int accountno, string email){
   //   this->name=name;
@@ -56,16 +58,21 @@ class Bank{
     return email;
   }
 
+  bool CheckCorrectAccount(int accountNumber){
+    if(this->accountno!=accountNumber) return false;
+    return true;
+  }
 
   int OpenAccount();
   int BalanceEnquiry();
-  int Deposit();
-  int Withdrawl();
+  int Deposit(int b);
+  int Withdrawl(int withdraw);
   void CloseAccount();
   int ShowAllAccount();
   int Quit();
 };
 int Bank::OpenAccount(){
+    totalBankAccount++;
       cout<<"Please enter your Full Name: ";
     string res;
     cin>>res;
@@ -89,23 +96,26 @@ int Bank::BalanceEnquiry(){
   }
 
 int Bank::Deposit(int depositbalance){
-  
+  totalbalance+=depositbalance;
+  return totalbalance;
 }
-int Bank::Withdrawl(){
- cout<<"Please enter the Bank account name: "<<endl;
-
-  }
-  void Bank::CloseAccount(){
-    cout<<"Please enter the Bank account name: "<<endl;
-    
-  }
+int Bank::Withdrawl(int withdraw){
+  totalbalance-=withdraw;
+  return totalbalance;
+}
+void Bank::CloseAccount(){
+    delete totalbalance;
+    delete accountno;
+}
   int Bank::ShowAllAccount(){
-   cout<<"Please enter the Bank account name: "<<endl;
-  
+    ifstream inputfile(bank.txt);
+    for(int i=0;i<totalBankAccount;i++){
+        cout<<"full Name: "<<inputfile.name<<"Account Number: "<<inputfile.bankaccount;
     }
-  int Bank::Quit(){
-
-  }
+}
+int Bank::Quit(){
+    break;
+}
 
 int main(){
   // Bank b("Default", 9, 9824, "default@gmail.com");
@@ -120,45 +130,81 @@ int main(){
   cout<<"7: Quit: "<<endl;
 
   int choice;
-  try
-  {
+  try{
     cin>>choice;
-    if(choice!=type_info(int)) throw "Please enter the correct number.";
+    if(choice>7 && choice<=1){
+      throw "Please only enter the number from 1 to 7.";
+    }
+    if(tpe!=type(int)) throw "Please only enter the Integar Value.";
   }
   catch(const std::exception& e)
   {
     std::cerr << e.what()<<endl;
   }
   
+  int bankaccountnumber;
   switch (choice) {
   case 1:
   ofstream outputfile("bank.txt", ios::app);
   outputfile>>b;
-  
     b.OpenAccount();
+    cout<<"You've successfully opened a account";
     break;
     case 2:
     b.BalanceEnquiry();
+    cout<<"You've Check your total balance enquiry.";
     break;
     
     
     case 3:
-    b.Deposit();
-     cout<<"Please enter the Bank account name: "<<endl;
-     int bankaccountnumber;
+    cout<<"Please enter the Bank account name: "<<endl;
+    cin>>bankaccountnumber;
+    int depositAmmount;
+    cout<<"Please enter the deposit amount: ";
     try{
-      if(bankaccountnumber==b.getAccount()){
-          b.setAccountNo(bankaccountnumber);
+      if(b.CheckCorrectAccount(bankaccountnumber)){
+        cout<<"Your current balance is: "<<b.Deposit(depositAmmount)<<endl;
       }
       else{
         throw "Account Number doesn't match.";
       }
     }
     catch(string err){
-        cout<<err<<endl;
+      cout<<err<<endl;
     }
     break;
-
+    case 4:
+    cout<<"Please enter your account number: ";
+    cin>>bankaccountnumber;
+    cout<<"Please enter the amount you want to withdraw: ";
+    int withdrawamount;
+    try{
+      
+      if(b.CheckCorrectAccount(bankaccountnumber)){
+        cin>>withdrawamount;
+        cout<<"Withdraw successfully your current balance is"<<b.Withdrawl(withdrawamount); 
+      }
+      if(b.getTotalBalance()<withdrawamount){
+        throw "Insufficient balance.";
+      }
+      else{
+        throw "There's the error while withdraw a amount please try again.";
+      }
+    }
+    catch(string s){
+      cout<<s<<endl;
+    }
+    break;
+    case 5:
+    cin>>bankaccountnumber;
+    if(b.CheckCorrectAccount(bankaccountnumber)){
+      b.CloseAccount();
+    }
+    cout<<"Yo've closed your account.";
+    // Show All the account:
+    case 6:
+    cout<<b.ShowAllAccount();
+    break;
   default:
   cout<<"Please choose any option: ";
     break;
