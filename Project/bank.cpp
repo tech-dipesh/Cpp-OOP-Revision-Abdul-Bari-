@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 using namespace std;
 // Global variable to count the total Bank Account:
 int totalBankAccount=0;
@@ -104,8 +105,7 @@ int Bank::Withdrawl(int withdraw){
   return totalbalance;
 }
 void Bank::CloseAccount(){
-    delete totalbalance;
-    delete accountno;
+
 }
   int Bank::ShowAllAccount(){
     ifstream inputfile(bank.txt);
@@ -114,7 +114,7 @@ void Bank::CloseAccount(){
     }
 }
 int Bank::Quit(){
-    break;
+  exit(0);
 }
 
 int main(){
@@ -135,7 +135,6 @@ int main(){
     if(choice>7 && choice<=1){
       throw "Please only enter the number from 1 to 7.";
     }
-    if(tpe!=type(int)) throw "Please only enter the Integar Value.";
   }
   catch(const std::exception& e)
   {
