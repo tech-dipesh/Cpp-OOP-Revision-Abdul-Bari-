@@ -105,7 +105,8 @@ int Bank::Withdrawl(int withdraw){
   return totalbalance;
 }
 void Bank::CloseAccount(){
-
+    inputfile fstream(bank.txt);
+    
 }
   int Bank::ShowAllAccount(){
     ifstream inputfile(bank.txt);
